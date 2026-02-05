@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-05T18:13:12.147Z",
+  "updatedAt": "2026-02-05T18:15:00.781Z",
   "createdAt": "2026-02-02T08:53:27.598Z",
   "id": "xciBpTQzzMclS2IZSDvhp",
   "name": "Backup",
@@ -134,8 +134,8 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1.1,
       "position": [
-        1392,
-        0
+        1280,
+        224
       ],
       "id": "a07f1ade-bb2b-45d9-9d1f-c5c27d92cbb3",
       "name": "Create a file",
@@ -214,6 +214,11 @@
             "node": "Edit a file",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Create a file",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -242,13 +247,7 @@
     },
     "Edit a file": {
       "main": [
-        [
-          {
-            "node": "Create a file",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -261,7 +260,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "1077ee14-9f2f-4345-9035-b8dff7e76ec7",
+  "versionId": "aa64ca89-dda6-4bf0-a2b1-3c08d236af7a",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
