@@ -1,88 +1,209 @@
 {
-  "updatedAt": "2026-02-05T16:55:54.267Z",
-  "createdAt": "2026-02-05T16:55:18.782Z",
-  "id": "t5Q83_XZX6AUqXsEy3A2n",
-  "name": "Min nye workflow",
+  "updatedAt": "2026-02-05T17:25:58.703Z",
+  "createdAt": "2026-02-02T08:53:27.598Z",
+  "id": "xciBpTQzzMclS2IZSDvhp",
+  "name": "Backup",
   "active": false,
   "isArchived": false,
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
       "position": [
         0,
         0
       ],
-      "id": "3166b70a-f78e-4402-84e8-696bbf5a7d44",
-      "name": "When clicking ‘Execute workflow’"
+      "id": "9a62e34c-e5c8-4411-a941-62f643292c1f",
+      "name": "Schedule Trigger"
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
-          "conditions": [
+        "url": "http://localhost:5678/api/v1/workflows",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "n8nApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
             {
-              "id": "4c5131f6-f84b-4634-adbf-6aeba32ac6e9",
-              "leftValue": "",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
+              "name": "limit",
+              "value": "100"
             }
-          ],
-          "combinator": "and"
+          ]
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.3,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        464,
+        0
+      ],
+      "id": "64d6be7d-e37b-4f90-ab41-15cd439d4077",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fnTw4prwXjSnJhyk",
+          "name": "Header Auth account"
+        },
+        "n8nApi": {
+          "id": "jUGJofudvGLeZEhy",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "format": true,
+          "fileName": "{{ $json.id }}.json"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        944,
+        0
+      ],
+      "id": "9f28fec8-69da-4d03-9250-cf872e1c5155",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9bbcede2-63b4-4e3c-98ed-78edf91e76a6",
+              "name": "folderNmae",
+              "value": "Backup_{{ $now.format(\"yyyy-MM-d d') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
         208,
         0
       ],
-      "id": "ada4de18-4225-45bb-8e5d-32d71877510c",
-      "name": "If"
+      "id": "1f32d28e-107e-4b97-be7a-40f631a1db72",
+      "name": "Edit Fields1"
     },
     {
       "parameters": {
-        "operation": "addToDate",
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Doukni"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "AiAgenter",
+          "mode": "name"
+        },
+        "filePath": "backups/n8n-backup.json",
+        "binaryData": true,
+        "commitMessage": "Auto backup"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1184,
+        0
+      ],
+      "id": "54a94826-8acb-4a5b-851c-bc4f494a447f",
+      "name": "Edit a file",
+      "webhookId": "97246103-0a0e-475b-bc2c-b34a7fa5c2d7",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "yb3KvcKEJUHQT0Y5",
+          "name": "GitHub account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
         "options": {}
       },
-      "type": "n8n-nodes-base.dateTime",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
       "position": [
-        416,
-        -96
+        688,
+        0
       ],
-      "id": "97ab5380-a421-469c-9da7-e494c1c49f82",
-      "name": "Date & Time"
+      "id": "255c6fe7-dde8-4fc1-b48b-dfca6e7b8b0b",
+      "name": "Split Out"
     }
   ],
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "HTTP Request": {
       "main": [
         [
           {
-            "node": "Date & Time",
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Edit a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit a file": {
+      "main": [
+        []
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
@@ -95,17 +216,19 @@
     "availableInMCP": false
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "6bc70762-9a06-4d4f-a7e9-229e8b2a76f3",
+  "versionId": "d8bd3190-2746-4bb8-aa52-551e7d75d3e6",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
     {
-      "updatedAt": "2026-02-05T16:55:18.799Z",
-      "createdAt": "2026-02-05T16:55:18.799Z",
+      "updatedAt": "2026-02-02T08:53:27.608Z",
+      "createdAt": "2026-02-02T08:53:27.608Z",
       "role": "workflow:owner",
-      "workflowId": "t5Q83_XZX6AUqXsEy3A2n",
+      "workflowId": "xciBpTQzzMclS2IZSDvhp",
       "projectId": "JkSHDoT17IYpppIK"
     }
   ],
