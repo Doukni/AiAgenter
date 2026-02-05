@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-05T17:27:46.226Z",
+  "updatedAt": "2026-02-05T17:31:39.788Z",
   "createdAt": "2026-02-02T08:53:27.598Z",
   "id": "xciBpTQzzMclS2IZSDvhp",
   "name": "Backup",
@@ -101,6 +101,20 @@
     },
     {
       "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        688,
+        0
+      ],
+      "id": "255c6fe7-dde8-4fc1-b48b-dfca6e7b8b0b",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
         "authentication": "oAuth2",
         "resource": "file",
         "operation": "edit",
@@ -114,7 +128,7 @@
           "value": "AiAgenter",
           "mode": "name"
         },
-        "filePath": "backups/n8n-backup.json",
+        "filePath": "=backups/{{ $binary.data.fileName }}",
         "binaryData": true,
         "commitMessage": "Auto backup"
       },
@@ -133,20 +147,6 @@
           "name": "GitHub account 2"
         }
       }
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "data",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        688,
-        0
-      ],
-      "id": "255c6fe7-dde8-4fc1-b48b-dfca6e7b8b0b",
-      "name": "Split Out"
     }
   ],
   "connections": {
@@ -194,11 +194,6 @@
         ]
       ]
     },
-    "Edit a file": {
-      "main": [
-        []
-      ]
-    },
     "Split Out": {
       "main": [
         [
@@ -208,6 +203,11 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Edit a file": {
+      "main": [
+        []
       ]
     }
   },
@@ -220,7 +220,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "1a00665b-0855-44c0-adf4-c87405fe4c28",
+  "versionId": "a18f5a91-8af9-49bb-ad55-ff5beb9a978f",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
