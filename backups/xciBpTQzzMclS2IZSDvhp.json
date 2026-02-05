@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-05T18:05:24.166Z",
+  "updatedAt": "2026-02-05T18:06:34.573Z",
   "createdAt": "2026-02-02T08:53:27.598Z",
   "id": "xciBpTQzzMclS2IZSDvhp",
   "name": "Backup",
@@ -117,6 +117,7 @@
       "parameters": {
         "authentication": "oAuth2",
         "resource": "file",
+        "operation": "edit",
         "owner": {
           "__rl": true,
           "mode": "name",
@@ -138,7 +139,7 @@
         0
       ],
       "id": "54a94826-8acb-4a5b-851c-bc4f494a447f",
-      "name": "Create a file",
+      "name": "Edit a file1",
       "webhookId": "97246103-0a0e-475b-bc2c-b34a7fa5c2d7",
       "credentials": {
         "githubOAuth2Api": {
@@ -152,7 +153,6 @@
       "parameters": {
         "authentication": "oAuth2",
         "resource": "file",
-        "operation": "edit",
         "owner": {
           "__rl": true,
           "value": "Doukni",
@@ -174,7 +174,7 @@
         0
       ],
       "id": "a07f1ade-bb2b-45d9-9d1f-c5c27d92cbb3",
-      "name": "Edit a file",
+      "name": "Create a file",
       "webhookId": "2070e8be-c85e-4864-9d66-7cb74c813d7c",
       "credentials": {
         "githubOAuth2Api": {
@@ -211,7 +211,7 @@
       "main": [
         [
           {
-            "node": "Create a file",
+            "node": "Edit a file1",
             "type": "main",
             "index": 0
           }
@@ -240,11 +240,11 @@
         ]
       ]
     },
-    "Create a file": {
+    "Edit a file1": {
       "main": [
         [
           {
-            "node": "Edit a file",
+            "node": "Create a file",
             "type": "main",
             "index": 0
           }
@@ -261,7 +261,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "1151a5fb-b7dc-4af2-8332-b00a58862439",
+  "versionId": "014d4ba2-e7be-41a7-968a-d584b8529745",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
