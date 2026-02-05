@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-05T18:06:34.573Z",
+  "updatedAt": "2026-02-05T18:13:12.147Z",
   "createdAt": "2026-02-02T08:53:27.598Z",
   "id": "xciBpTQzzMclS2IZSDvhp",
   "name": "Backup",
@@ -117,6 +117,40 @@
       "parameters": {
         "authentication": "oAuth2",
         "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "Doukni",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "mode": "name",
+          "value": "AiAgenter"
+        },
+        "filePath": "=backups/{{ $binary.data.fileName }}",
+        "binaryData": true,
+        "commitMessage": "Create New Workflow"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1392,
+        0
+      ],
+      "id": "a07f1ade-bb2b-45d9-9d1f-c5c27d92cbb3",
+      "name": "Create a file",
+      "webhookId": "2070e8be-c85e-4864-9d66-7cb74c813d7c",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "yb3KvcKEJUHQT0Y5",
+          "name": "GitHub account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
         "operation": "edit",
         "owner": {
           "__rl": true,
@@ -139,7 +173,7 @@
         0
       ],
       "id": "54a94826-8acb-4a5b-851c-bc4f494a447f",
-      "name": "Edit a file1",
+      "name": "Edit a file",
       "webhookId": "97246103-0a0e-475b-bc2c-b34a7fa5c2d7",
       "credentials": {
         "githubOAuth2Api": {
@@ -148,40 +182,6 @@
         }
       },
       "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "owner": {
-          "__rl": true,
-          "value": "Doukni",
-          "mode": "name"
-        },
-        "repository": {
-          "__rl": true,
-          "mode": "name",
-          "value": "AiAgenter"
-        },
-        "filePath": "=backups/{{ $binary.data.fileName }}",
-        "fileContent": "data",
-        "commitMessage": "Create New Workflow"
-      },
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1.1,
-      "position": [
-        1392,
-        0
-      ],
-      "id": "a07f1ade-bb2b-45d9-9d1f-c5c27d92cbb3",
-      "name": "Create a file",
-      "webhookId": "2070e8be-c85e-4864-9d66-7cb74c813d7c",
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "yb3KvcKEJUHQT0Y5",
-          "name": "GitHub account 2"
-        }
-      }
     }
   ],
   "connections": {
@@ -211,7 +211,7 @@
       "main": [
         [
           {
-            "node": "Edit a file1",
+            "node": "Edit a file",
             "type": "main",
             "index": 0
           }
@@ -240,7 +240,7 @@
         ]
       ]
     },
-    "Edit a file1": {
+    "Edit a file": {
       "main": [
         [
           {
@@ -261,7 +261,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "014d4ba2-e7be-41a7-968a-d584b8529745",
+  "versionId": "1077ee14-9f2f-4345-9035-b8dff7e76ec7",
   "activeVersionId": null,
   "triggerCount": 0,
   "shared": [
